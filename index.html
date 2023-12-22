@@ -7,7 +7,9 @@
 
     <style>
         body{
-            background: #F5F5DC;
+            background: hsl(184, 78%, 75%) ;
+            font-family: 'Shojumaru', cursive;
+            color: white;
         }
         #container{
             height: 100vh;
@@ -23,10 +25,11 @@
             align-items: center;
             margin: 20px;
             padding: 20px;
-            background-color: #FFDEAD;
+            background-color: 	#4682B4;
             border-radius: 10px;
             width: 50%;
             height: 50%;
+            gap: 20px;
         }
 
         .form-container{
@@ -91,6 +94,13 @@
             transform: scale(2);
         }
 
+        
+
+        .footer h3{
+            font-size: 20px;
+            text-align: center;
+        }
+
         @keyframes fade {
             0%{opacity: 0 ; transform: scale(0.5);}
             100%{opacity: 1 ; transform: scale(2);}
@@ -115,11 +125,9 @@
             h1{
                 font-size: 20px;
             }
-}
-
-        body {
-  font-family: 'Shojumaru', cursive;
-  background-color: #b38867;
+            .footer h3{
+            font-size: 10px;
+        }
 }
 
 .title {
@@ -159,12 +167,18 @@
                 <input type="text" id="thala-input">
                 <button  id="makeItRain" onclick="thalaTester()" type="submit">Test</button>
             </div>
+
+            <div class="footer">
+                <h3>Created with  love 💙 by Harsh</h3>
+            </div>
            
         </div>
 
         <video id="videoPlayer"  loop>
             <source src="thal-meme.mp4" type="video/mp4">
         </video>
+
+
 
     </div>
 
