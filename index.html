@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body{
+            background: #F5F5DC;
+        }
+        #container{
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .thala-container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 20px;
+            padding: 20px;
+            background-color: #FFDEAD;
+            border-radius: 10px;
+            width: 50%;
+            height: 50%;
+        }
+
+        .form-container{
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            width: 80%;
+        }
+
+
+        input{
+            flex: 3;
+            height: 40px;
+            width: 100%;
+            border-radius: 2px;
+            outline: none;
+            border: none;
+            background-color: rgb(255, 255, 255);
+        }
+        button{
+            flex: 1;
+            height: 40px;
+            border-radius: 2px;
+            border: none;
+            outline: none;
+            color: white;
+            background-color: 	#FF5733;
+            cursor: pointer;
+        }
+        
+        #videoPlayer{
+            display: none;
+            position: fixed;
+            height: 100%;
+        }
+
+        #thala-text{
+            font-size: xx-large;
+            position: fixed;
+            font-weight: 900;
+            font-size: 100px;
+            display: flex;
+            display: none;
+            z-index: 100;
+            color: black;
+            animation: rotate 2s infinite ease;
+            width: 100%;
+        }
+
+        @keyframes rotate{
+            0%{
+                transform: rotate(0);
+            }
+            100%{
+                transform: rotate(360deg);
+            }
+        }
+
+        .fadeClass{
+            animation: fade 3s ease;
+            transform: scale(2);
+        }
+
+        @keyframes fade {
+            0%{opacity: 0 ; transform: scale(0.5);}
+            100%{opacity: 1 ; transform: scale(2);}
+        }
+
+        @media screen and (max-width: 910px) {
+            #thala-text{
+                font-size: 80px;
+            }
+}
+
+@media screen and (max-width: 720px) {
+            #thala-text{
+                font-size: 50px;
+            }
+}
+
+@media screen and (max-width: 455px) {
+            #thala-text{
+                font-size: 30px;
+            }
+            h1{
+                font-size: 20px;
+            }
+}
+
+        body {
+  font-family: 'Shojumaru', cursive;
+  background-color: #b38867;
+}
+
+.title {
+  font-size: 100px;
+  color: white;
+  text-align: center;
+}
+
+.emoji-container {
+  margin-bottom: 25px;
+  margin-top: 25px;
+  text-align: center;
+}
+
+.emoji {
+  font-size: 200px;
+}
+
+.button-container {
+  text-align: center;
+}
+     
+
+    </style>
+
+</head>
+<body >
+
+    <div id="container">
+
+        <h2  id="thala-text">Thala for a reason</h2>
+
+        <div class="thala-container">
+            <h1>Thala Tester</h1>
+
+            <div class="form-container">
+                <input type="text" id="thala-input">
+                <button  id="makeItRain" onclick="thalaTester()" type="submit">Test</button>
+            </div>
+           
+        </div>
+
+        <video id="videoPlayer"  loop>
+            <source src="thal-meme.mp4" type="video/mp4">
+        </video>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <script>
+        let text = document.getElementById("thala-text");
+        let vp = document.getElementById("videoPlayer");
+
+        let input = document.getElementById("thala-input");
+
+        const thalaTester = async()=>{
+            let value = input.value;
+            if(value.length == 7 || value == '7' || value.includes("seven") || value.includes("saat")){
+                vp.style.display = "block";
+                vp.play();
+                vp.classList.add("fadeClass");
+                makeItRain();
+                text.style.display="block";
+            
+            }
+            else getSum(value);
+        }
+        
+        const getSum = (value)=>{
+                let number = Number(value)
+                let sum = 0;
+                while(number > 0){
+                    sum += number%10;
+                    number = number/10;
+                    number = Math.floor(number);
+                }
+                if(sum == 7){
+                    vp.classList.add("fadeClass");
+                    makeItRain();
+                    text.style.display="block";
+                    vp.style.display = "block";
+                vp.play();
+                }
+            }
+
+            //  confetti
+
+            function basic(){
+  confetti({
+  particleCount: 100,
+  spread: 70,
+  origin: { y: 0.6 }
+});
+}
+
+function randomDirection(){
+ confetti({
+  angle: randomInRange(55, 125),
+  spread: randomInRange(50, 70),
+  particleCount: randomInRange(50, 100),
+  origin: { y: 0.6 }
+}); 
+}
+
+function makeItRain() {
+  document.getElementById("makeItRain").disabled = true;
+  var end = Date.now() + (2 * 1000);
+
+// go Buckeyes!
+var colors = ['#bb0000', '#ffffff'];
+
+function frame() {
+  confetti({
+    particleCount: 2,
+    angle: 60,
+    spread: 55,
+    origin: { x: 0 },
+    colors: colors
+  });
+  confetti({
+    particleCount: 2,
+    angle: 120,
+    spread: 55,
+    origin: { x: 1 },
+    colors: colors
+  });
+
+  if (Date.now() < end) {
+    requestAnimationFrame(frame);
+  }
+  else {
+    document.getElementById("makeItRain").disabled = false;
+  }
+};
+  frame();
+}
+
+function randomInRange(min, max) {
+  return Math.random() * (max - min) + min;
+}
+        
+    </script>
+    
+</body>
+</html>
